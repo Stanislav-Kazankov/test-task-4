@@ -1,0 +1,28 @@
+.product-list {
+  @include make-flex();
+  margin-top: -13px;
+
+  @media (max-width: $max-mobile-width) {
+    flex-direction: column;
+  }
+
+  @media (min-width: $tablet-width) and (max-width: $max-tablet-width) {
+    flex-wrap: wrap-reverse;
+    justify-content: space-around;
+  }
+
+  @media (min-width: $desktop-width) {
+    justify-content: space-between;
+    width: 100%;
+  }
+}
+
+.product-list__item {
+  margin-bottom: 30px;
+
+  &:first-child {
+    @media (min-width: $tablet-width) and (max-width: $max-tablet-width) {
+      order: 1;
+    }
+  }
+}

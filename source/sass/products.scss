@@ -1,0 +1,32 @@
+.products {
+  min-height: 680px;
+  padding-top: 40px;
+
+  background-image: url("../img/bg.png");
+}
+
+.products__centering-wrapper {
+  @include make-flex-column();
+  align-items: center;
+  @include make-center();
+  width: 1120px;
+  min-height: inherit;
+
+  @media (max-width: $max-mobile-width) {
+    width: 320px;
+  }
+
+  @media (min-width: $tablet-width) and (max-width: $max-tablet-width) {
+    width: 690px;
+  }
+}
+
+.products__h2 {
+  margin-top: 0;
+  margin-bottom: 35px;
+}
+
+.products__list {
+  @include make-flex();
+  @include reset-list();
+}
