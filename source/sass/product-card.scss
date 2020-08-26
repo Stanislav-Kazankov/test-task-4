@@ -9,11 +9,11 @@
   background-position: -28px 165px;
   background-repeat: no-repeat;
 
-  @media (max-resolution: $usual-dpi) , (max-resolution: $usual-dppx) {
+  @media (max-resolution: $usual-dpi), (max-resolution: $usual-dppx) {
     background-image: url("../img/product-card-bg@1x.png");
   }
 
-  @media (min-resolution: $retina-dpi) , (min-resolution: $retina-dppx) {
+  @media (min-resolution: $retina-dpi), (min-resolution: $retina-dppx) {
     background-image: url("../img/product-card-bg@2x.png");
   }
 

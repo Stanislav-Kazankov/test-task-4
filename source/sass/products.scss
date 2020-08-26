@@ -19,6 +19,7 @@
 .products__centering-wrapper {
   @include make-flex-column();
   align-items: center;
+
   @include make-center();
 
   @media (min-width: $desktop-width) {
