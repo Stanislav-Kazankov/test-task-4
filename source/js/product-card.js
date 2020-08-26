@@ -43,50 +43,50 @@
     overtitle.style.color = overtitleColor;
   }
 
-  productList.addEventListener('click', function (evt) {
-    if (isNotPromoWords(evt.target)) {
-      var productCard = getParentByClassName(evt.target, 'product-list__card');
+  var onProductCardClick = function (target, productCard) {
+    if (target.classList.contains('product-card__buy-word')) {
+      productCard.classList.remove('product-card--default-hover');
+    }
+    var overtitle = productCard.querySelector('.product-card__overtitle');
+    var promoWords = productCard.querySelector('.product-card__promo-words');
+    if (productCard.classList.contains('product-card--selected')) {
+      setOvertitle(overtitle, defaultOvertitleText, GREY);
+      promoWords.innerHTML = defaultPromoWords;
+    } else {
+      promoWords.textContent = selectedPromoWordsMap[productCard.classList[2]];
+    }
+    productCard.classList.toggle('product-card--selected');
+  }
+
+  var onProductCardEventsBody = function (target, onProductCardEvent, overtitleText, overtitleColor) {
+    if (isNotPromoWords(target)) {
+      var productCard = getParentByClassName(target, 'product-list__card');
       if (productCard !== null) {
         if (!productCard.classList.contains('product-card--disabled')) {
-          var overtitle = productCard.querySelector('.product-card__overtitle');
-          var promoWords = productCard.querySelector('.product-card__promo-words');
-          if (productCard.classList.contains('product-card--selected')) {
-            setOvertitle(overtitle, defaultOvertitleText, GREY);
-            promoWords.innerHTML = defaultPromoWords;
-          } else {
-            promoWords.textContent = selectedPromoWordsMap[productCard.classList[2]];
-          }
-          productCard.classList.toggle('product-card--selected');
+          onProductCardEvent(target, productCard, overtitleText, overtitleColor);
         }
-      }
-    }
-  });
-
-  var toggleProductCard = function (elem, overtitleText, overtitleColor) {
-    var productCard = getParentByClassName(elem, 'product-list__card');
-    if (productCard !== null) {
-      if (!productCard.classList.contains('product-card--disabled')) {
-        var overtitle = productCard.querySelector('.product-card__overtitle');
-        if (productCard.classList.contains('product-card--selected')) {
-          setOvertitle(overtitle, overtitleText, overtitleColor);
-        }
-        productCard.classList.toggle('product-card--default-hover');
       }
     }
   }
 
-  var toggleProductCardByСondition = function (elem, overtitleText, overtitleColor) {
-    if (isNotPromoWords(elem)) {
-      toggleProductCard(elem, overtitleText, overtitleColor);
+  productList.addEventListener('click', function (evt) {
+    onProductCardEventsBody(evt.target, onProductCardClick);
+  });
+
+  var onProductCardOverOut = function (target, productCard, overtitleText, overtitleColor) {
+    var overtitle = productCard.querySelector('.product-card__overtitle');
+    if (productCard.classList.contains('product-card--selected')) {
+      setOvertitle(overtitle, overtitleText, overtitleColor);
     }
+    productCard.classList.toggle('product-card--default-hover');
   }
 
   productList.addEventListener('mouseover', function (evt) {
-    toggleProductCardByСondition(evt.target, SELECTED_HOVER_OVERTITLE_TEXT, PINK);
+    onProductCardEventsBody(evt.target, onProductCardOverOut, SELECTED_HOVER_OVERTITLE_TEXT, PINK);
   });
 
   productList.addEventListener('mouseout', function (evt) {
-    toggleProductCardByСondition(evt.target, defaultOvertitleText, GREY);
+    onProductCardEventsBody(evt.target, onProductCardOverOut, defaultOvertitleText, GREY);
   });
 
   var disableProductCard = function (productCard) {
