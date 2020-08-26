@@ -66,6 +66,8 @@
   }
 
   &--disabled {
+    cursor: default;
+
     & .product-card__overlay {
       background-color: rgba($white, 0.8);
     }
@@ -177,11 +179,11 @@
 .product-card__promo-words {
   position: absolute;
   top: calc(100% + 18px);
-  left: auto;
-  right: auto;
+
+  left: 0;
 
   width: calc(100% + 8px);
-  margin-left: 9px;
+  margin-left: -5px;
 
   font-size: 13px;
   line-height: 15px;
@@ -191,9 +193,38 @@
 }
 
 .product-card__buy-word {
+  position: relative;
+
   color: $blue;
-  text-decoration: underline;
-  text-decoration-style: dashed;
+
+  &::after {
+    content: "";
+
+    position: absolute;
+    bottom: 0;
+    left: 4px;
+
+    width: 70%;
+    height: 1px;
+
+    border-bottom: 1px dashed $blue;
+
+    transform: scaleX(1.4);
+  }
+
+  /* Chrome, Edge, Safary, Firefox */
+  @supports (display: -webkit-flex) {
+    position: static;
+
+    &::after {
+      display: none;
+    }
+
+    text-decoration: underline;
+    text-decoration-style: dashed;
+
+    border-bottom: none;
+  }
 
   cursor: pointer;
 }

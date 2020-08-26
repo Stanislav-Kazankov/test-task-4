@@ -43,5 +43,9 @@
 
   .product-card__buy-word {
     color: $color;
+
+    &::after {
+      border-color: $color;
+    }
   }
 }

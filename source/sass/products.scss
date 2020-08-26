@@ -21,14 +21,6 @@
   align-items: center;
   @include make-center();
 
-  /*@media (max-width: $max-mobile-width) {
-    width: 320px;
-  }
-
-  @media (min-width: $tablet-width) and (max-width: $max-tablet-width) {
-    width: 690px;
-  }*/
-
   @media (min-width: $desktop-width) {
     width: 1120px;
   }
