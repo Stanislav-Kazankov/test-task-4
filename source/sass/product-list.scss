@@ -1,6 +1,7 @@
 .product-list {
   @include make-flex();
   margin-top: -13px;
+  margin-bottom: -20px;
 
   @media (max-width: $max-mobile-width) {
     flex-direction: column;
@@ -18,7 +19,7 @@
 }
 
 .product-list__item {
-  margin-bottom: 30px;
+  margin-bottom: 50px;
 
   &:first-child {
     @media (min-width: $tablet-width) and (max-width: $max-tablet-width) {
